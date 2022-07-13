@@ -8,7 +8,7 @@ public class UserAlreadyExistsException extends BusinessException {
     public static final UserAlreadyExistsException EXCEPTION = new UserAlreadyExistsException();
 
     private UserAlreadyExistsException() {
-        super(HttpStatus.CONFLICT, "»ç¿ëÀÚ°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù");
+        super(HttpStatus.CONFLICT, "ì‚¬ìš©ìê°€ ì´ë¯¸ ì¡´ì¬í•©ë‹ˆë‹¤");
     }
 
 }
