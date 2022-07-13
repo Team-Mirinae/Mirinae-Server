@@ -1,6 +1,6 @@
-package com.project.mirinae.user.repository;
+package com.project.mirinae.domain.user.repository;
 
-import com.project.mirinae.user.entity.User;
+import com.project.mirinae.domain.user.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

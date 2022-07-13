@@ -1,4 +1,4 @@
-package com.project.mirinae.user.entity;
+package com.project.mirinae.domain.user.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;

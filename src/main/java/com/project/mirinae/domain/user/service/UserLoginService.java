@@ -1,6 +1,6 @@
-package com.project.mirinae.user.service;
+package com.project.mirinae.domain.user.service;
 
-import com.project.mirinae.user.repository.UserRepository;
+import com.project.mirinae.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

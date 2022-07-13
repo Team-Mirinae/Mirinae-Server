@@ -1,10 +1,10 @@
-package com.project.mirinae.user.service;
+package com.project.mirinae.domain.user.service;
 
-import com.project.mirinae.user.entity.User;
-import com.project.mirinae.user.exception.UserAlreadyExistsException;
-import com.project.mirinae.user.presentation.dto.request.UserSignUpRequest;
-import com.project.mirinae.user.presentation.dto.response.UserResponse;
-import com.project.mirinae.user.repository.UserRepository;
+import com.project.mirinae.domain.user.exception.UserAlreadyExistsException;
+import com.project.mirinae.domain.user.presentation.dto.response.UserResponse;
+import com.project.mirinae.domain.user.entity.User;
+import com.project.mirinae.domain.user.presentation.dto.request.UserSignUpRequest;
+import com.project.mirinae.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

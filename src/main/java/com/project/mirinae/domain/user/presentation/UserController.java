@@ -1,7 +1,7 @@
-package com.project.mirinae.user.presentation;
+package com.project.mirinae.domain.user.presentation;
 
-import com.project.mirinae.user.service.UserLoginService;
-import com.project.mirinae.user.service.UserSignUpService;
+import com.project.mirinae.domain.user.service.UserSignUpService;
+import com.project.mirinae.domain.user.service.UserLoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,4 +1,4 @@
-package com.project.mirinae.user.presentation.dto.response;
+package com.project.mirinae.domain.user.presentation.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

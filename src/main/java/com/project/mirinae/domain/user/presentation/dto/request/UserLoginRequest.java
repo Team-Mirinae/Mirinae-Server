@@ -1,4 +1,4 @@
-package com.project.mirinae.user.presentation.dto.request;
+package com.project.mirinae.domain.user.presentation.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,15 +7,12 @@ import lombok.NonNull;
 
 @Getter @AllArgsConstructor
 @Builder
-public class UserSignUpRequest {
+public class UserLoginRequest {
 
     @NonNull
     private String id;
 
     @NonNull
     private String pw;
-
-    @NonNull
-    private String name;
 
 }
