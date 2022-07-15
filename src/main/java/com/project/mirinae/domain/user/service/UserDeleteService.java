@@ -14,10 +14,8 @@ public class UserDeleteService {
 
     public void execute(String userId) {
 
-        userRepository.findByUserId(userId)
+        User deleteUser = userRepository.findByUserId(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
-
-        User deleteUser = userRepository.getReferenceByUserId(userId);
 
         userRepository.delete(deleteUser);
     }

@@ -2,8 +2,8 @@ package com.project.mirinae.domain.restaurant.presentation;
 
 import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantDeleteRequest;
 import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantSaveRequest;
+import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantSearchRequest;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantAllSearchResponse;
-import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantDeleteResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantSaveResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantSearchDetailedResponse;
 import com.project.mirinae.domain.restaurant.service.RestaurantAllSearchService;
@@ -11,6 +11,7 @@ import com.project.mirinae.domain.restaurant.service.RestaurantDeleteService;
 import com.project.mirinae.domain.restaurant.service.RestaurantSaveService;
 import com.project.mirinae.domain.restaurant.service.RestaurantSearchService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,24 +24,35 @@ public class RestaurantController {
     private final RestaurantSearchService restaurantSearchService;
     private final RestaurantDeleteService restaurantDeleteService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/save")
-    public RestaurantSaveResponse restaurantSave(@RequestBody RestaurantSaveRequest request) {
-        return restaurantSaveService.execute(request);
+    public RestaurantSaveResponse restaurantSave(
+            @RequestBody RestaurantSaveRequest request,
+            @PathVariable String userId
+    ) {
+        return restaurantSaveService.execute(request, userId);
     }
 
     @GetMapping("/allsearch")
-    public RestaurantAllSearchResponse restaurantAllSearch(@PathVariable String userId) {
-        return null;
+    public RestaurantAllSearchResponse restaurantAllSearch(
+            @PathVariable String userId
+    ) {
+        return restaurantAllSearchService.execute(userId);
     }
 
     @GetMapping("/search")
-    public RestaurantSearchDetailedResponse restaurantSearch() {
-        return null;
+    public RestaurantSearchDetailedResponse restaurantSearch(
+            @RequestBody RestaurantSearchRequest request
+    ) {
+        return restaurantSearchService.execute(request);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete")
-    public RestaurantDeleteResponse restaurantDelete(@PathVariable String userId, @RequestBody RestaurantDeleteRequest request) {
-        return null;
+    public void restaurantDelete(
+            @RequestBody RestaurantDeleteRequest request
+    ) {
+        restaurantDeleteService.execute(request);
     }
 
 }

@@ -21,9 +21,13 @@ public class UserSignUpService {
     @Transactional
     public UserSignUpResponse execute(UserSignUpRequest request) {
         userRepository.findByUserId(request.getId())
-                .orElseThrow(() -> UserAlreadyExistsByIdException.EXCEPTION);
+                .ifPresent(m -> {
+                    throw UserAlreadyExistsByIdException.EXCEPTION;
+                });
         userRepository.findByName(request.getName())
-                .orElseThrow(() -> UserAlreadyExistsByNameException.EXCEPTION);
+                .ifPresent(m -> {
+                    throw UserAlreadyExistsByNameException.EXCEPTION;
+                });
 
         User user = User.builder()
                 .userId(request.getId())

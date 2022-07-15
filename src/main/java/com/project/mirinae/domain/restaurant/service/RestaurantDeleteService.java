@@ -1,6 +1,8 @@
 package com.project.mirinae.domain.restaurant.service;
 
-import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantDeleteResponse;
+import com.project.mirinae.domain.restaurant.entity.Restaurant;
+import com.project.mirinae.domain.restaurant.exception.RestaurantNotFoundException;
+import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantDeleteRequest;
 import com.project.mirinae.domain.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,11 +11,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RestaurantDeleteService {
 
-    private final RestaurantRepository repository;
+    private final RestaurantRepository restaurantRepository;
 
-    public RestaurantDeleteResponse execute() {
+    public void execute(RestaurantDeleteRequest request) {
 
-        return null;
+        Restaurant found = restaurantRepository.findByTitle(request.getTitle())
+                .orElseThrow(() -> RestaurantNotFoundException.EXCEPTION);
+
+        restaurantRepository.delete(found);
+
     }
 
 }

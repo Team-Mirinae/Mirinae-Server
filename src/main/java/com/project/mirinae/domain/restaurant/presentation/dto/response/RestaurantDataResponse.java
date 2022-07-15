@@ -4,8 +4,10 @@ import com.project.mirinae.domain.user.presentation.dto.response.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class RestaurantDataResponse {
 

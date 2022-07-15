@@ -3,16 +3,11 @@ package com.project.mirinae.domain.restaurant.presentation.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
 @Getter @AllArgsConstructor
 @Builder
 public class RestaurantSearchDetailedResponse {
 
-    private HttpStatus status;
-
-    private String msg;
-
-    private RestaurantListResponse list;
+    private RestaurantDataResponse data;
 
 }

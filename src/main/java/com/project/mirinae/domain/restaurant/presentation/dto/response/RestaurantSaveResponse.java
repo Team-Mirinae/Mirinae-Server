@@ -9,10 +9,6 @@ import org.springframework.http.HttpStatus;
 @Builder
 public class RestaurantSaveResponse {
 
-    private HttpStatus status;
-
-    private String msg;
-
     private RestaurantDataResponse restaurantData;
 
 }
