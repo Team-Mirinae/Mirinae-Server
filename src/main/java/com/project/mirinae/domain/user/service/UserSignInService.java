@@ -1,0 +1,36 @@
+package com.project.mirinae.domain.user.service;
+
+import com.project.mirinae.domain.user.entity.User;
+import com.project.mirinae.domain.user.exception.PasswordWrongException;
+import com.project.mirinae.domain.user.exception.UserNotFoundException;
+import com.project.mirinae.domain.user.presentation.dto.request.UserSignInRequest;
+import com.project.mirinae.domain.user.presentation.dto.response.UserSignInResponse;
+import com.project.mirinae.domain.user.presentation.dto.response.UserResponse;
+import com.project.mirinae.domain.user.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class UserSignInService {
+
+    private final UserRepository userRepository;
+
+    public UserSignInResponse execute(UserSignInRequest request) {
+
+        User loginUser = userRepository.findByUserId(request.getId())
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+
+        UserResponse userData = UserResponse.builder()
+                .userId(loginUser.getUserId())
+                .name(loginUser.getName())
+                .build();
+
+        if(!loginUser.getPw().equals(request.getPw())) throw PasswordWrongException.EXCEPTION;
+
+        return UserSignInResponse.builder()
+                .userData(userData)
+                .build();
+    }
+
+}

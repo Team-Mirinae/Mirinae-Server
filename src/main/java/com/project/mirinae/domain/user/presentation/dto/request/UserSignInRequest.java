@@ -7,7 +7,7 @@ import lombok.NonNull;
 
 @Getter @AllArgsConstructor
 @Builder
-public class UserLoginRequest {
+public class UserSignInRequest {
 
     @NonNull
     private String id;

@@ -1,24 +1,40 @@
 package com.project.mirinae.domain.user.presentation;
 
+import com.project.mirinae.domain.user.presentation.dto.request.UserSignInRequest;
 import com.project.mirinae.domain.user.presentation.dto.request.UserSignUpRequest;
-import com.project.mirinae.domain.user.presentation.dto.response.UserResponse;
+import com.project.mirinae.domain.user.presentation.dto.response.UserSignInResponse;
+import com.project.mirinae.domain.user.presentation.dto.response.UserSignUpResponse;
+import com.project.mirinae.domain.user.service.UserDeleteService;
 import com.project.mirinae.domain.user.service.UserSignUpService;
-import com.project.mirinae.domain.user.service.UserLoginService;
+import com.project.mirinae.domain.user.service.UserSignInService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserSignUpService userSignUpService;
-    private final UserLoginService userLoginService;
+    private final UserSignInService userLoginService;
+    private final UserDeleteService userDeleteService;
 
-    @PostMapping("/signUp")
-    public UserResponse userSignUp(@RequestBody UserSignUpRequest request) {
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/sign-up")
+    public UserSignUpResponse userSignUp(@RequestBody UserSignUpRequest request) {
         return userSignUpService.execute(request);
+    }
+
+    @PostMapping("/sign-in")
+    public UserSignInResponse userSignIn(@RequestBody UserSignInRequest request) {
+        return userLoginService.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/delete")
+    public void userDelete(@PathVariable String userId) {
+        userDeleteService.execute(userId);
     }
 
 }

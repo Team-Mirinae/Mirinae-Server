@@ -1,11 +1,14 @@
 package com.project.mirinae.domain.user.service;
 
-import com.project.mirinae.domain.user.exception.UserAlreadyExistsException;
+import com.project.mirinae.domain.user.exception.UserAlreadyExistsByIdException;
+import com.project.mirinae.domain.user.exception.UserAlreadyExistsByNameException;
 import com.project.mirinae.domain.user.presentation.dto.response.UserResponse;
 import com.project.mirinae.domain.user.entity.User;
 import com.project.mirinae.domain.user.presentation.dto.request.UserSignUpRequest;
+import com.project.mirinae.domain.user.presentation.dto.response.UserSignUpResponse;
 import com.project.mirinae.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,22 +19,26 @@ public class UserSignUpService {
     private final UserRepository userRepository;
 
     @Transactional
-    public UserResponse execute(UserSignUpRequest request) {
-
-        userRepository.findByUserId(request.getId()).orElseThrow(() -> UserAlreadyExistsException.EXCEPTION);
+    public UserSignUpResponse execute(UserSignUpRequest request) {
+        userRepository.findByUserId(request.getId())
+                .orElseThrow(() -> UserAlreadyExistsByIdException.EXCEPTION);
+        userRepository.findByName(request.getName())
+                .orElseThrow(() -> UserAlreadyExistsByNameException.EXCEPTION);
 
         User user = User.builder()
                 .userId(request.getId())
                 .name(request.getName())
                 .pw(request.getPw())
                 .build();
+        user = userRepository.save(user);
 
-        userRepository.save(user);
-
-        return UserResponse.builder()
+        UserResponse userData = UserResponse.builder()
                 .userId(user.getUserId())
                 .name(user.getName())
-                .pw(user.getPw())
+                .build();
+
+        return UserSignUpResponse.builder()
+                .userData(userData)
                 .build();
     }
 

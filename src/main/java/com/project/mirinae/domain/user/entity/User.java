@@ -1,11 +1,13 @@
 package com.project.mirinae.domain.user.entity;
 
+import com.project.mirinae.domain.restaurant.entity.Restaurant;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -16,14 +18,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "userId", nullable = false)
     private String userId;
 
-    @Column(name = "password", nullable = false)
     private String pw;
 
-    @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    private List<Restaurant> restaurants;
 
     @Builder
     public User(String userId, String pw, String name) {
@@ -31,6 +33,5 @@ public class User {
         this.pw = pw;
         this.name = name;
     }
-
 
 }

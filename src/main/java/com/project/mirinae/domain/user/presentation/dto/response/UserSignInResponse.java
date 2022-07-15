@@ -6,10 +6,8 @@ import lombok.Getter;
 
 @Getter @AllArgsConstructor
 @Builder
-public class UserResponse {
+public class UserSignInResponse {
 
-    private final String userId;
-
-    private final String name;
+    private UserResponse userData;
 
 }
