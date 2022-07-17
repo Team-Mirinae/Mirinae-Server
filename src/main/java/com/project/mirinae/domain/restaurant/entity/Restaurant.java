@@ -22,16 +22,17 @@ public class Restaurant {
 
     private String content;
 
-    private double longitude;
-
     private double latitude;
 
+    private double longitude;
+
+
     @Builder
-    public Restaurant(String title, User user, String content, double longtitude, double latitude) {
+    public Restaurant(String title, User user, String content, double latitude, double longitude) {
         this.title = title;
         this.user = user;
         this.content = content;
-        this.longitude = longtitude;
         this.latitude = latitude;
+        this.longitude = longitude;
     }
 }

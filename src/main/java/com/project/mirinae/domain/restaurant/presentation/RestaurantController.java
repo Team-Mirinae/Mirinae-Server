@@ -1,8 +1,6 @@
 package com.project.mirinae.domain.restaurant.presentation;
 
-import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantDeleteRequest;
 import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantSaveRequest;
-import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantSearchRequest;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantAllSearchResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantSaveResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantSearchDetailedResponse;
@@ -33,7 +31,7 @@ public class RestaurantController {
         return restaurantSaveService.execute(request, userId);
     }
 
-    @GetMapping("/allsearch/{userId}")
+    @GetMapping("/favorite/{userId}")
     public RestaurantAllSearchResponse restaurantAllSearch(
             @PathVariable("userId") String userId
     ) {
@@ -42,17 +40,17 @@ public class RestaurantController {
 
     @GetMapping("/search")
     public RestaurantSearchDetailedResponse restaurantSearch(
-            @RequestBody RestaurantSearchRequest request
+            @RequestParam String title
     ) {
-        return restaurantSearchService.execute(request);
+        return restaurantSearchService.execute(title);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/delete")
+    @DeleteMapping("/favorite")
     public void restaurantDelete(
-            @RequestBody RestaurantDeleteRequest request
+            @RequestParam String title
     ) {
-        restaurantDeleteService.execute(request);
+        restaurantDeleteService.execute(title);
     }
 
 }

@@ -3,6 +3,7 @@ package com.project.mirinae.domain.restaurant.service;
 import com.project.mirinae.domain.restaurant.entity.Restaurant;
 import com.project.mirinae.domain.restaurant.exception.RestaurantAlredyExistsByTitleException;
 import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantSaveRequest;
+import com.project.mirinae.domain.restaurant.presentation.dto.response.CoordinateResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantDataResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantSaveResponse;
 import com.project.mirinae.domain.restaurant.repository.RestaurantRepository;
@@ -36,8 +37,8 @@ public class RestaurantSaveService {
         Restaurant restaurant = Restaurant.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
-                .longtitude(request.getCoordinate().getLongitude())
-                .latitude(request.getCoordinate().getLatitude())
+                .latitude(request.getLatitude())
+                .longitude(request.getLongitude())
                 .user(user)
                 .build();
         restaurant =  restaurantRepository.save(restaurant);
@@ -45,7 +46,10 @@ public class RestaurantSaveService {
         RestaurantDataResponse restaurantData = RestaurantDataResponse.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
-                .coordinate(request.getCoordinate())
+                .coordinate(CoordinateResponse.builder()
+                        .latitude(request.getLatitude())
+                        .longitude(request.getLongitude())
+                        .build())
                 .build();
 
         return RestaurantSaveResponse.builder()

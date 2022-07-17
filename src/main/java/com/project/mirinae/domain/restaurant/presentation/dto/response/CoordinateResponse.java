@@ -8,8 +8,9 @@ import lombok.Getter;
 @Builder
 public class CoordinateResponse {
 
+    private double latitude;
+
     private double longitude;
 
-    private double latitude;
 
 }

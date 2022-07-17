@@ -2,7 +2,6 @@ package com.project.mirinae.domain.restaurant.service;
 
 import com.project.mirinae.domain.restaurant.entity.Restaurant;
 import com.project.mirinae.domain.restaurant.exception.RestaurantNotFoundException;
-import com.project.mirinae.domain.restaurant.presentation.dto.request.RestaurantSearchRequest;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.CoordinateResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantDataResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantSearchDetailedResponse;
@@ -17,9 +16,9 @@ public class RestaurantSearchService {
 
     private final RestaurantRepository restaurantRepository;
 
-    public RestaurantSearchDetailedResponse execute(RestaurantSearchRequest request) {
+    public RestaurantSearchDetailedResponse execute(String title) {
 
-        Restaurant found = restaurantRepository.findByTitle(request.getTitle())
+        Restaurant found = restaurantRepository.findByTitle(title)
                 .orElseThrow(() -> RestaurantNotFoundException.EXCEPTION);
 
         UserResponse user = UserResponse.builder()
@@ -29,16 +28,15 @@ public class RestaurantSearchService {
 
         RestaurantDataResponse data = RestaurantDataResponse.builder()
                 .title(found.getTitle())
-                .reason(found.getReason())
+                .content(found.getContent())
                 .coordinate(CoordinateResponse.builder()
-                        .x(found.getX())
-                        .y(found.getY())
+                        .longitude(found.getLongitude())
+                        .latitude(found.getLatitude())
                         .build())
-                .userData(user)
                 .build();
 
         return RestaurantSearchDetailedResponse.builder()
-                .data(data)
+                .restaurantData(data)
                 .build();
     }
 

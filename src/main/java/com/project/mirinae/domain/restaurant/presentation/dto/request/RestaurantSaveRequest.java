@@ -1,6 +1,5 @@
 package com.project.mirinae.domain.restaurant.presentation.dto.request;
 
-import com.project.mirinae.domain.restaurant.presentation.dto.response.CoordinateResponse;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +16,9 @@ public class RestaurantSaveRequest {
     private String content;
 
     @NotNull
-    private CoordinateResponse coordinate;
+    private double latitude;
+
+    @NotNull
+    private double longitude;
 
 }
