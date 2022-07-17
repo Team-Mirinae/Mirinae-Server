@@ -8,6 +8,6 @@ public class PasswordWrongException extends BusinessException {
     public static final PasswordWrongException EXCEPTION = new PasswordWrongException();
 
     private PasswordWrongException() {
-        super(HttpStatus.BAD_REQUEST, "ºñ¹Ğ¹øÈ£ ´Ş¶ó ´Ù½Ã Àû¾î");
+        super(HttpStatus.BAD_REQUEST, "ë¹„ë°€ë²ˆí˜¸ ë‹¬ë¼ ë‹¤ì‹œ ì ì–´");
     }
 }

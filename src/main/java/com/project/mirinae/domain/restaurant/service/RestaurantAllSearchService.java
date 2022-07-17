@@ -1,6 +1,7 @@
 package com.project.mirinae.domain.restaurant.service;
 
 import com.project.mirinae.domain.restaurant.entity.Restaurant;
+import com.project.mirinae.domain.restaurant.presentation.dto.response.CoordinateResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantAllSearchResponse;
 import com.project.mirinae.domain.restaurant.presentation.dto.response.RestaurantDataResponse;
 import com.project.mirinae.domain.restaurant.repository.RestaurantRepository;
@@ -27,8 +28,11 @@ public class RestaurantAllSearchService {
 
         List<RestaurantDataResponse> list = found.stream().map(it -> RestaurantDataResponse.builder()
                 .title(it.getTitle())
-                .reason(it.getReason())
-                .coordinate(it.getCoordinate())
+                .content(it.getContent())
+                .coordinate(CoordinateResponse.builder()
+                        .longitude(it.getLongitude())
+                        .latitude(it.getLatitude())
+                        .build())
                 .build()
         ).collect(Collectors.toList());
 

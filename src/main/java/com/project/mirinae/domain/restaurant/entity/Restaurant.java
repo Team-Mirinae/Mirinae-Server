@@ -1,6 +1,5 @@
 package com.project.mirinae.domain.restaurant.entity;
 
-import com.project.mirinae.domain.restaurant.presentation.dto.response.CoordinateResponse;
 import com.project.mirinae.domain.user.entity.User;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -21,14 +20,18 @@ public class Restaurant {
     @JoinColumn(name = "userId")
     private User user;
 
-    private String reason;
+    private String content;
 
-    private CoordinateResponse coordinate;
+    private double longitude;
+
+    private double latitude;
 
     @Builder
-    public Restaurant(String title, User user, String reason) {
+    public Restaurant(String title, User user, String content, double longtitude, double latitude) {
         this.title = title;
         this.user = user;
-        this.reason = reason;
+        this.content = content;
+        this.longitude = longtitude;
+        this.latitude = latitude;
     }
 }

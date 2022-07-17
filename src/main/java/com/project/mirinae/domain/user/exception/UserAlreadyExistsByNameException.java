@@ -8,6 +8,6 @@ public class UserAlreadyExistsByNameException extends BusinessException {
     public static final UserAlreadyExistsByNameException EXCEPTION = new UserAlreadyExistsByNameException();
 
     private UserAlreadyExistsByNameException() {
-        super(HttpStatus.CONFLICT, "ÀÀ ´Ğ³×ÀÓ ÀÌ¹Ì ÀÖ¾î");
+        super(HttpStatus.CONFLICT, "ì‘ ë‹‰ë„¤ì„ ì´ë¯¸ ìˆì–´");
     }
 }

@@ -8,6 +8,6 @@ import lombok.Getter;
 @Builder
 public class RestaurantSearchDetailedResponse {
 
-    private RestaurantDataResponse data;
+    private RestaurantDataResponse restaurantData;
 
 }

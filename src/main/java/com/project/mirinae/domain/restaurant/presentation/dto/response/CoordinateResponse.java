@@ -8,8 +8,8 @@ import lombok.Getter;
 @Builder
 public class CoordinateResponse {
 
-    private String x;
+    private double longitude;
 
-    private String y;
+    private double latitude;
 
 }

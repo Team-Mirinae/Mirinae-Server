@@ -8,6 +8,6 @@ public class RestaurantAlredyExistsByTitleException extends BusinessException {
     public static final RestaurantAlredyExistsByTitleException EXCEPTION = new RestaurantAlredyExistsByTitleException();
 
     private RestaurantAlredyExistsByTitleException() {
-        super(HttpStatus.CONFLICT, "ÀÌ ¸ÀÁı ÀÌ¹Ì ÀúÀåÇÔ");
+        super(HttpStatus.CONFLICT, "ì´ ë§›ì§‘ ì´ë¯¸ ì €ì¥í•¨");
     }
 }

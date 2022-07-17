@@ -8,6 +8,6 @@ public class UserNotFoundException extends BusinessException {
     public static final UserNotFoundException EXCEPTION = new UserNotFoundException();
 
     private UserNotFoundException() {
-        super(HttpStatus.NOT_FOUND, "°¡ÀÔµµ ¾ÈÇÏ°í ·Î±×ÀÎÀÌ³Ä");
+        super(HttpStatus.NOT_FOUND, "ëª» ì°¾ì•˜ì–´");
     }
 }

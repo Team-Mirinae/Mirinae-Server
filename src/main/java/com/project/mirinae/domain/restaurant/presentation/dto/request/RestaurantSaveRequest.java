@@ -14,7 +14,7 @@ public class RestaurantSaveRequest {
     private String title;
 
     @NotNull
-    private String reason;
+    private String content;
 
     @NotNull
     private CoordinateResponse coordinate;

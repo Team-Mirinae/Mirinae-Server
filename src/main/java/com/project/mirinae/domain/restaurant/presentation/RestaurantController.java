@@ -25,17 +25,17 @@ public class RestaurantController {
     private final RestaurantDeleteService restaurantDeleteService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/save")
+    @PostMapping("/save/{userId}")
     public RestaurantSaveResponse restaurantSave(
             @RequestBody RestaurantSaveRequest request,
-            @PathVariable String userId
+            @PathVariable("userId") String userId
     ) {
         return restaurantSaveService.execute(request, userId);
     }
 
-    @GetMapping("/allsearch")
+    @GetMapping("/allsearch/{userId}")
     public RestaurantAllSearchResponse restaurantAllSearch(
-            @PathVariable String userId
+            @PathVariable("userId") String userId
     ) {
         return restaurantAllSearchService.execute(userId);
     }

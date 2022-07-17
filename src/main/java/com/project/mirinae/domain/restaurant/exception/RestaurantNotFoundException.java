@@ -8,6 +8,6 @@ public class RestaurantNotFoundException extends BusinessException {
     public static final RestaurantNotFoundException EXCEPTION = new RestaurantNotFoundException();
 
     private RestaurantNotFoundException() {
-        super(HttpStatus.NOT_FOUND, "Á¦¸ñÀÌ ¾ø¾î¿ä..");
+        super(HttpStatus.NOT_FOUND, "ì œëª©ì´ ì—†ì–´ìš”..");
     }
 }
