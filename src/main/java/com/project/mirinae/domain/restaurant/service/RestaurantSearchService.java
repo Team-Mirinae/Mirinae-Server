@@ -8,12 +8,15 @@ import com.project.mirinae.domain.restaurant.presentation.dto.response.Restauran
 import com.project.mirinae.domain.restaurant.repository.RestaurantRepository;
 import com.project.mirinae.domain.user.presentation.dto.response.UserResponse;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class RestaurantSearchService {
 
+    private final Logger log = LoggerFactory.getLogger(RestaurantSearchService.class);
     private final RestaurantRepository restaurantRepository;
 
     public RestaurantSearchDetailedResponse execute(String title) {
@@ -34,6 +37,8 @@ public class RestaurantSearchService {
                         .latitude(found.getLatitude())
                         .build())
                 .build();
+
+        log.info("restaurantSearch Success!!");
 
         return RestaurantSearchDetailedResponse.builder()
                 .restaurantData(data)

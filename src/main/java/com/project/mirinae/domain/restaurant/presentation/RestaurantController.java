@@ -46,9 +46,9 @@ public class RestaurantController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/favorite")
+    @DeleteMapping("/favorite/{title}")
     public void restaurantDelete(
-            @RequestParam String title
+            @PathVariable("title") String title
     ) {
         restaurantDeleteService.execute(title);
     }

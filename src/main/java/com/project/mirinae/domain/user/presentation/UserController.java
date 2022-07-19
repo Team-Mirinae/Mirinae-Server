@@ -8,6 +8,8 @@ import com.project.mirinae.domain.user.service.UserDeleteService;
 import com.project.mirinae.domain.user.service.UserSignUpService;
 import com.project.mirinae.domain.user.service.UserSignInService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,24 +18,31 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
+    private final Logger log = LoggerFactory.getLogger(UserController.class);
     private final UserSignUpService userSignUpService;
     private final UserSignInService userLoginService;
     private final UserDeleteService userDeleteService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-up")
-    public UserSignUpResponse userSignUp(@RequestBody UserSignUpRequest request) {
+    public UserSignUpResponse userSignUp(
+            @RequestBody UserSignUpRequest request
+    ) {
         return userSignUpService.execute(request);
     }
 
     @PostMapping("/sign-in")
-    public UserSignInResponse userSignIn(@RequestBody UserSignInRequest request) {
+    public UserSignInResponse userSignIn(
+            @RequestBody UserSignInRequest request
+    ) {
         return userLoginService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{userId}")
-    public void userDelete(@PathVariable("userId") String userId) {
+    public void userDelete(
+            @PathVariable("userId") String userId
+    ) {
         userDeleteService.execute(userId);
     }
 

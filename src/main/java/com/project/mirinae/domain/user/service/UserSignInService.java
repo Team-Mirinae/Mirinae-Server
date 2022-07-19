@@ -8,12 +8,15 @@ import com.project.mirinae.domain.user.presentation.dto.response.UserSignInRespo
 import com.project.mirinae.domain.user.presentation.dto.response.UserResponse;
 import com.project.mirinae.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserSignInService {
 
+    private final Logger log = LoggerFactory.getLogger(UserSignInService.class);
     private final UserRepository userRepository;
 
     public UserSignInResponse execute(UserSignInRequest request) {
@@ -27,6 +30,8 @@ public class UserSignInService {
                 .build();
 
         if(!loginUser.getPw().equals(request.getPw())) throw PasswordWrongException.EXCEPTION;
+
+        log.info("signIn Success!!");
 
         return UserSignInResponse.builder()
                 .userData(userData)

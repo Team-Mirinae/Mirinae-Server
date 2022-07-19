@@ -8,6 +8,8 @@ import com.project.mirinae.domain.restaurant.repository.RestaurantRepository;
 import com.project.mirinae.domain.user.entity.User;
 import com.project.mirinae.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RestaurantAllSearchService {
 
+    private final Logger log = LoggerFactory.getLogger(RestaurantAllSearchService.class);
     private final RestaurantRepository restaurantRepository;
     private final UserRepository userRepository;
 
@@ -35,6 +38,8 @@ public class RestaurantAllSearchService {
                         .build())
                 .build()
         ).collect(Collectors.toList());
+
+        log.info("restaurantAllSearch Success!!");
 
         return RestaurantAllSearchResponse.builder()
                 .list(list)

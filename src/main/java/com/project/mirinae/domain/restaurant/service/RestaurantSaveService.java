@@ -11,12 +11,15 @@ import com.project.mirinae.domain.user.entity.User;
 import com.project.mirinae.domain.user.presentation.dto.response.UserResponse;
 import com.project.mirinae.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class RestaurantSaveService {
 
+    private final Logger log = LoggerFactory.getLogger(RestaurantSaveService.class);
     private final RestaurantRepository restaurantRepository;
     private final UserRepository userRepository;
 
@@ -41,7 +44,8 @@ public class RestaurantSaveService {
                 .longitude(request.getLongitude())
                 .user(user)
                 .build();
-        restaurant =  restaurantRepository.save(restaurant);
+
+        restaurantRepository.save(restaurant);
 
         RestaurantDataResponse restaurantData = RestaurantDataResponse.builder()
                 .title(request.getTitle())
@@ -51,6 +55,8 @@ public class RestaurantSaveService {
                         .longitude(request.getLongitude())
                         .build())
                 .build();
+
+        log.info("RestaurantSave Success!!");
 
         return RestaurantSaveResponse.builder()
                 .restaurantData(restaurantData)
