@@ -10,6 +10,4 @@ public class UserResponse {
 
     private final String userId;
 
-    private final String name;
-
 }

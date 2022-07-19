@@ -15,7 +15,4 @@ public class UserSignUpRequest {
     @NonNull
     private String pw;
 
-    @NonNull
-    private String name;
-
 }
