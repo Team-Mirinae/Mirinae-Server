@@ -10,8 +10,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByUserId(String userId);
 
-    Optional<User> findByName(String name);
-
     List<User> findAllByUserId(String userId);
 
     User getReferenceByUserId(String userId);

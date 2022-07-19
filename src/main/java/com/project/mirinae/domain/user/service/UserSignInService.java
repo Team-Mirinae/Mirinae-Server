@@ -26,7 +26,6 @@ public class UserSignInService {
 
         UserResponse userData = UserResponse.builder()
                 .userId(loginUser.getUserId())
-                .name(loginUser.getName())
                 .build();
 
         if(!loginUser.getPw().equals(request.getPw())) throw PasswordWrongException.EXCEPTION;

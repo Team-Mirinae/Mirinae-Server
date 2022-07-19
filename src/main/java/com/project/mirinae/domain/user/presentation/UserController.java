@@ -4,7 +4,6 @@ import com.project.mirinae.domain.user.presentation.dto.request.UserSignInReques
 import com.project.mirinae.domain.user.presentation.dto.request.UserSignUpRequest;
 import com.project.mirinae.domain.user.presentation.dto.response.UserSignInResponse;
 import com.project.mirinae.domain.user.presentation.dto.response.UserSignUpResponse;
-import com.project.mirinae.domain.user.service.UserDeleteService;
 import com.project.mirinae.domain.user.service.UserSignUpService;
 import com.project.mirinae.domain.user.service.UserSignInService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,6 @@ public class UserController {
     private final Logger log = LoggerFactory.getLogger(UserController.class);
     private final UserSignUpService userSignUpService;
     private final UserSignInService userLoginService;
-    private final UserDeleteService userDeleteService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/sign-up")
@@ -38,6 +36,7 @@ public class UserController {
         return userLoginService.execute(request);
     }
 
+<<<<<<< HEAD
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{userId}")
     public void userDelete(
@@ -46,4 +45,6 @@ public class UserController {
         userDeleteService.execute(userId);
     }
 
+=======
+>>>>>>> 0bb7fcfc70679cf25c7021ac545170a3aa3de2f8
 }
